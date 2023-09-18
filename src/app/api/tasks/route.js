@@ -1,7 +1,9 @@
 import { connectDB } from "@/helper/db";
 import { getResponseMessage } from "@/helper/responseMessage";
 import { Task } from "@/models/task";
+import { User } from "@/models/user";
 import { NextResponse } from "next/server";
+import jwt from "jsonwebtoken"
 
 //connectDB();
 
@@ -34,7 +36,15 @@ export async function POST(request)
         
         const postData =await request.json();
 
-        const task = new Task(postData);
+        const authToken = request.cookies.get("loginToken")?.value;
+
+        const verifiedToken = jwt.verify(authToken, process.env.JWT_KEY);
+
+        const user = await User.findById(verifiedToken._id);
+
+
+
+        const task = new Task({...postData,userId:user._id});
 
         const saveTask = await task.save();
 

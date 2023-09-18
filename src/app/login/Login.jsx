@@ -111,7 +111,7 @@ const Login = () => {
           {/* Button actions */}
           <div className="mt-4 flex justify-center">
             <button className="bg-green-600 py-2 px-3 rounded-lg hover:bg-green-400">
-              SignUp
+              Login
             </button>
             <button className="bg-orange-600 py-2 px-3 ms-5 rounded-lg hover:bg-orange-400">
               Reset

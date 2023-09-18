@@ -10,7 +10,7 @@ const AddTask = () => {
     title: "",
     content: "",
     status: "none",
-    userId: "6501522f48b1bfa860398fe6",
+    userId: "",
   });
 
   const handleAddTask = async (event) => {
@@ -19,8 +19,11 @@ const AddTask = () => {
     try {
       const result = await addTask(task);
 
-      toast.success("Your task is added!!", {
+      toast.success("Task Added!!", {
         position: "top-center",
+        autoClose: 1000,
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
       });
 
       setTask({
@@ -32,6 +35,9 @@ const AddTask = () => {
       console.log(error);
       toast.error("Error While Adding Task!!", {
         position: "top-center",
+        autoClose: 1000,
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
       });
     }
   };

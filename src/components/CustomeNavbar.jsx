@@ -2,21 +2,24 @@
 import UserContext from "@/context/UserContext";
 import { logOutUser } from "@/services/userService";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { toast } from "react-toastify";
 
 const Customenavbar = () => {
   let context = useContext(UserContext);
 
-  context = context?.user;
+  const router = useRouter();
 
   const doLogOut = async () => {
     try {
       const result = await logOutUser();
 
-      console.log(result);
+      console.log("result : ", result);
 
       context.setUser(undefined);
+
+      router.push("/");
     } catch (error) {
       toast.error("Error in logout user", {
         position: "top-center",

@@ -3,6 +3,7 @@ import { Task } from "@/models/task"
 import { NextResponse } from "next/server";
 
 
+
 export async function GET(request,{params})
 {
     try {
@@ -14,7 +15,7 @@ export async function GET(request,{params})
     } catch (error) {
         console.log(error);
         return NextResponse.json({
-            message:"Failed To Update User",
+            message:"Failed To Get Users",
             success:false
         })
     }

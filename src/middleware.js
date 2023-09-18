@@ -5,7 +5,7 @@ export function middleware(request)
 {
      const authToken = request.cookies.get("loginToken")?.value;
 
-    if( request.nextUrl.pathname == "/api/login")
+    if( request.nextUrl.pathname == "/api/login" || request.nextUrl.pathname == "/api/users" || request.nextUrl.pathname == "/api/current")
     {
         return;
     }

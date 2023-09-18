@@ -8,9 +8,7 @@ import { currentUser } from '@/services/userService';
 
 const UserProvider = ({children}) => {
 
-   const [user,setUser] = useState({
-        undefined
-    });
+   const [user,setUser] = useState(undefined);
 
   
 
@@ -20,10 +18,16 @@ const UserProvider = ({children}) => {
           const logUser=async()=>{
 
            try {
-        
                 const userDetails = await currentUser();
 
-                setUser({...userDetails})
+                
+
+                if(userDetails.success==false)
+                {
+                    return;
+                }
+           
+                setUser({...userDetails.user})
             } catch (error) {
                 console.log(error);
                 toast.error("Error in loading current user",{

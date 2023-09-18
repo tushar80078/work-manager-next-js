@@ -11,3 +11,24 @@ export async function addTask(task)
     }
 
 }
+
+export async function getTasksOfUser(userId)
+{
+    try {
+        const result = await httpAxios.get(`/api/users/${userId}/tasks`).then((response)=>response.data);
+        return result;
+     } catch (error) {
+         console.log("Error in getTask Service : \n",error);
+     }
+}
+
+export async function deleteTask(taskId)
+{
+    
+    try {
+        const result = await httpAxios.delete(`/api/tasks/${taskId}`).then((response)=>response.data);
+        return result;
+     } catch (error) {
+         console.log("Error in getTask Service : \n",error);
+     }
+}

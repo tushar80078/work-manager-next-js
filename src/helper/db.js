@@ -2,25 +2,23 @@ import mongoose from "mongoose"
 
 import { User } from "@/models/user";
 
+const config={
+    isConnected : 0
+}
+
 export const connectDB= async()=>{
+    if(config.isConnected)
+    {
+        return;
+    }
     try {
         
     const {connection}= await   mongoose.connect(process.env.MONGO_DB_URL)
 
     console.log("Db Conected");
 
-    // Testing and creating new user
+    config.isConnected= connection.readyState;
 
-    // const user = new User({
-    //     name:"Test name",
-    //     email :"test@gmail.com",
-    //     password :"testpassword",
-    //     about:"this is testing"
-    // });
-
-    // await user.save();
-
-    // console.log("User created");
 
 } catch (error) {
         console.log("Failed to connect db",error);
